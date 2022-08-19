@@ -13,4 +13,8 @@ describe("Calculate bowl", () => {
     const score = calculateBowl([4, 5, 3, 2]);
     expect(score).toEqual([9, 5]);
   });
+  it("returns a null should a frame not be completed ", () => {
+    expect(calculateBowl([4])).toEqual([null]);
+    expect(calculateBowl([4, 5, 4])).toEqual([9, null]);
+  });
 });
