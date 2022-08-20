@@ -8,6 +8,13 @@ function calculateBowl(rolls) {
       const frameScore = rolls[index + 1] ? 10 + rolls[index + 1] : null;
       score.push(frameScore);
       index++;
+    } else if (rolls[index] === "X") {
+      const frameScore =
+        rolls[index + 1] && rolls[index + 2]
+          ? 10 + rolls[index + 1] + rolls[index + 2]
+          : null;
+      score.push(frameScore);
+      index++;
     } else {
       const frameScore = rolls
         .slice(index, index + 2)
