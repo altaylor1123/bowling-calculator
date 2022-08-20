@@ -17,4 +17,12 @@ describe("Calculate bowl", () => {
     expect(calculateBowl([4])).toEqual([null]);
     expect(calculateBowl([4, 5, 4])).toEqual([9, null]);
   });
+  it("returns a spare bonus should next roll be scored", () => {
+    const score = calculateBowl(["/", 5, 4]);
+    expect(score).toEqual([15, 9]);
+  });
+  it("returns a null on a spare that doesn't have a next scored roll", () => {
+    const score = calculateBowl(["/"]);
+    expect(score).toEqual([null]);
+  });
 });
