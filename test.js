@@ -15,11 +15,11 @@ describe("Calculate bowl", () => {
     expect(calculateBowl([4, 5, 4])).toEqual([9, null]);
   });
   it("returns a spare bonus should next roll be scored", () => {
-    expect(calculateBowl(["/", 5, 4])).toEqual([15, 9]);
+    expect(calculateBowl([6, "/", 5, 4])).toEqual([15, 9]);
   });
   it("returns a null on a spare that doesn't have a next scored roll", () => {
     expect(calculateBowl(["/"])).toEqual([null]);
-    expect(calculateBowl([4, 5, "/"])).toEqual([9, null]);
+    expect(calculateBowl([4, 5, 6, "/"])).toEqual([9, null]);
   });
   it("returns a strike bonus should next two rolls be scored", () => {
     expect(calculateBowl(["X", 5, 4])).toEqual([19, 9]);
@@ -30,6 +30,6 @@ describe("Calculate bowl", () => {
     expect(calculateBowl([4, 5, "X", 9])).toEqual([9, null, null]);
   });
   it("returns nulls on a streak of strikes", () => {
-    expect(calculateBowl(["X", "X", "X"])).toEqual([null, null, null]);
+    expect(calculateBowl(["X", "X", "X"])).toEqual([30, null, null]);
   });
 });
