@@ -29,4 +29,7 @@ describe("Calculate bowl", () => {
     expect(calculateBowl(["X"])).toEqual([null]);
     expect(calculateBowl([4, 5, "X", 9])).toEqual([9, null, null]);
   });
+  it("returns nulls on a streak of strikes", () => {
+    expect(calculateBowl(["X", "X", "X"])).toEqual([null, null, null]);
+  });
 });
