@@ -3,19 +3,26 @@ function calculateBowl(rolls) {
   let index = 0;
   const score = [];
 
+  const isSpare = (roll) => {
+    return roll === "/";
+  };
+  const isStrike = (roll) => {
+    return roll === "X";
+  };
+
   const calculateNextTwoRolls = (roll1, roll2) => {
-    let sum = 0;
+    let sum = 10;
 
     if (typeof roll1 === "number" && typeof roll2 === "number") {
-      sum = roll1 + roll2;
+      sum += roll1 + roll2;
     }
-    if (roll2 === "/") {
+    if (isSpare(roll2)) {
       sum += 10;
     }
-    if (roll1 === "X") {
+    if (isStrike(roll1)) {
       sum += 10;
     }
-    if (roll2 === "X") {
+    if (isStrike(roll2)) {
       sum += 10;
     }
 
@@ -23,10 +30,10 @@ function calculateBowl(rolls) {
   };
 
   while (index < rolls.length) {
-    if (rolls[index] === "X") {
+    if (isStrike(rolls[index])) {
       const frameScore =
         rolls[index + 1] && rolls[index + 2]
-          ? 10 + calculateNextTwoRolls(rolls[index + 1], rolls[index + 2])
+          ? calculateNextTwoRolls(rolls[index + 1], rolls[index + 2])
           : null;
       score.push(frameScore);
       index++;
@@ -36,7 +43,7 @@ function calculateBowl(rolls) {
         .reduce((acc, roll, sliceIndex, sliceArray) => {
           if (!sliceArray[1]) {
             return null;
-          } else if (sliceArray[1] === "/") {
+          } else if (isSpare(sliceArray[1])) {
             return rolls[index + 2] && rolls[index + 3]
               ? 10 + rolls[index + 2]
               : null;
