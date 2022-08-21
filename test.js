@@ -39,5 +39,6 @@ describe("Calculate bowl", () => {
   });
   it("returns a 0 score upon rolling 0s", () => {
     expect(calculateBowl(["X", 0, 0])).toEqual([10, 0]);
+    expect(calculateBowl([4, "/", 0, 0])).toEqual([10, 0]);
   });
 });

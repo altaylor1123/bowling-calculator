@@ -35,7 +35,7 @@ function calculateBowl(rolls) {
       if (array[1] === undefined) {
         return null;
       } else if (isSpare(array[1])) {
-        return rolls[index + 2] && rolls[index + 3]
+        return rolls[index + 2] !== undefined && rolls[index + 3] !== undefined
           ? 10 + rolls[index + 2]
           : null;
       } else {
