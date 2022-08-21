@@ -32,4 +32,7 @@ describe("Calculate bowl", () => {
   it("returns nulls on a streak of strikes", () => {
     expect(calculateBowl(["X", "X", "X"])).toEqual([30, null, null]);
   });
+  it("returns stike bonus when strike followed by spare", () => {
+    expect(calculateBowl(["X", 4, "/"])).toEqual([20, null]);
+  });
 });
