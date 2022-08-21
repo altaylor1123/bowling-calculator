@@ -6,7 +6,6 @@ function calculateBowl(rolls) {
   const isDigit = (roll) => {
     return /([0-9])/.test(roll);
   };
-
   const isSpare = (roll) => {
     return roll === "/";
   };
