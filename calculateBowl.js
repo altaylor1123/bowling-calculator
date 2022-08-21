@@ -14,7 +14,8 @@ function calculateBowl(rolls) {
     return roll === "X";
   };
 
-  function calculateNextRolls() {
+  function calculateStrikeFrame() {
+    if (!(rolls[index + 1] && rolls[index + 2])) return null;
     return rolls.slice(index + 1, index + 3).reduce((acc, roll, _, array) => {
       if (isDigit(roll)) {
         return acc + roll;
@@ -30,10 +31,10 @@ function calculateBowl(rolls) {
   }
 
   function calculateFrame() {
-    return rolls.slice(index, index + 2).reduce((acc, roll, _, sliceArray) => {
-      if (!sliceArray[1]) {
+    return rolls.slice(index, index + 2).reduce((acc, roll, _, array) => {
+      if (!array[1]) {
         return null;
-      } else if (isSpare(sliceArray[1])) {
+      } else if (isSpare(array[1])) {
         return rolls[index + 2] && rolls[index + 3]
           ? 10 + rolls[index + 2]
           : null;
@@ -45,8 +46,7 @@ function calculateBowl(rolls) {
 
   while (index < rolls.length) {
     if (isStrike(rolls[index])) {
-      const frameScore =
-        rolls[index + 1] && rolls[index + 2] ? calculateNextRolls() : null;
+      const frameScore = calculateStrikeFrame();
       score.push(frameScore);
       index++;
     } else {
