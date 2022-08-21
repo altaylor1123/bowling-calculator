@@ -35,5 +35,6 @@ describe("Calculate bowl", () => {
   });
   it("returns stike bonus when strike followed by spare", () => {
     expect(calculateBowl(["X", 4, "/"])).toEqual([20, null]);
+    expect(calculateBowl([4, 5, "X", 8, "/"])).toEqual([9, 20, null]);
   });
 });
