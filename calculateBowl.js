@@ -3,11 +3,19 @@ function calculateBowl(rolls) {
   let index = 0;
   const score = [];
 
+  const checkRoll = (roll) => {
+    if (roll === "X") {
+      return 10;
+    } else {
+      return roll;
+    }
+  };
+
   while (index < rolls.length) {
     if (rolls[index] === "X") {
       const frameScore =
         rolls[index + 1] && rolls[index + 2]
-          ? 10 + rolls[index + 1] + rolls[index + 2]
+          ? 10 + checkRoll(rolls[index + 1]) + checkRoll(rolls[index + 2])
           : null;
       score.push(frameScore);
       index++;
