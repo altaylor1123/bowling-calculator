@@ -14,12 +14,7 @@ function calculateBowl(rolls) {
   };
 
   const calculateStrikeFrame = () => {
-    if (
-      !(
-        (rolls[index + 1] || rolls[index + 1] === 0) &&
-        (rolls[index + 2] || rolls[index + 2] === 0)
-      )
-    )
+    if (rolls[index + 1] === undefined || rolls[index + 2] === undefined)
       return null;
     return rolls.slice(index + 1, index + 3).reduce((acc, roll, _, array) => {
       if (isDigit(roll)) {
@@ -37,7 +32,7 @@ function calculateBowl(rolls) {
 
   const calculateFrame = () => {
     return rolls.slice(index, index + 2).reduce((acc, roll, _, array) => {
-      if (!(array[1] || array[1] === 0)) {
+      if (array[1] === undefined) {
         return null;
       } else if (isSpare(array[1])) {
         return rolls[index + 2] && rolls[index + 3]
