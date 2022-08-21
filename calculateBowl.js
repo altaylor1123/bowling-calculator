@@ -37,7 +37,9 @@ function calculateBowl(rolls) {
           if (!sliceArray[1]) {
             return null;
           } else if (sliceArray[1] === "/") {
-            return rolls[index + 2] ? 10 + rolls[index + 2] : null;
+            return rolls[index + 2] && rolls[index + 3]
+              ? 10 + rolls[index + 2]
+              : null;
           } else {
             return acc + roll;
           }
