@@ -3,9 +3,6 @@ function calculateBowl(rolls) {
   let index = 0;
   const score = [];
 
-  const isDigit = (roll) => {
-    return /([0-9])/.test(roll);
-  };
   const isSpare = (roll) => {
     return roll === "/";
   };
@@ -17,16 +14,13 @@ function calculateBowl(rolls) {
     if (rolls[index + 1] === undefined || rolls[index + 2] === undefined)
       return null;
     return rolls.slice(index + 1, index + 3).reduce((acc, roll, _, array) => {
-      if (isDigit(roll)) {
-        return acc + roll;
-      }
       if (isSpare(roll)) {
         return acc + (10 - array[0]);
       }
       if (isStrike(roll)) {
         return acc + 10;
       }
-      return acc;
+      return acc + roll;
     }, 10);
   };
 
