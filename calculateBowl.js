@@ -31,10 +31,8 @@ function calculateBowl(rolls) {
   };
 
   const calculateFrame = () => {
+    if (rolls[index + 1] === undefined) return null;
     return rolls.slice(index, index + 2).reduce((acc, roll, _, array) => {
-      if (array[1] === undefined) {
-        return null;
-      }
       if (isSpare(roll)) {
         return rolls[index + 2] !== undefined && rolls[index + 3] !== undefined
           ? acc + (10 - array[0]) + rolls[index + 2]
