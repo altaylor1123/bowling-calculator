@@ -3,13 +3,11 @@ function calculateBowl(rolls) {
   if (rolls.length === 0) return score;
 
   if (isStrike(rolls[0])) {
-    const frameScore = calculateStrikeFrame(rolls);
-    const newScore = [...score, frameScore];
-    return newScore.concat(calculateBowl(rolls.slice(1)));
+    const throws = 1;
+    return setFrame(rolls, score, calculateStrikeFrame, throws);
   } else {
-    const frameScore = calculateFrame(rolls);
-    const newScore = [...score, frameScore];
-    return newScore.concat(calculateBowl(rolls.slice(2)));
+    const throws = 2;
+    return setFrame(rolls, score, calculateFrame, throws);
   }
 }
 
@@ -45,4 +43,9 @@ const calculateFrame = (rolls) => {
   }, 0);
 };
 
+const setFrame = (rolls, score, calFn, throws) => {
+  const frameScore = calFn(rolls);
+  const newScore = [...score, frameScore];
+  return newScore.concat(calculateBowl(rolls.slice(throws)));
+};
 module.exports = calculateBowl;
