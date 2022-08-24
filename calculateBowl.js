@@ -1,15 +1,15 @@
 function calculateBowl(rolls) {
-  let score = [];
+  const score = [];
   if (rolls.length === 0) return score;
 
   if (isStrike(rolls[0])) {
     const frameScore = calculateStrikeFrame(rolls);
-    score.push(frameScore);
-    return score.concat(calculateBowl(rolls.slice(1)));
+    const newScore = [...score, frameScore];
+    return newScore.concat(calculateBowl(rolls.slice(1)));
   } else {
     const frameScore = calculateFrame(rolls);
-    score.push(frameScore);
-    return score.concat(calculateBowl(rolls.slice(2)));
+    const newScore = [...score, frameScore];
+    return newScore.concat(calculateBowl(rolls.slice(2)));
   }
 }
 
